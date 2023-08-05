@@ -19,8 +19,8 @@ app.get('/', (req: Request, res: Response) => {
 	res.send('Server is running')
 })
 
-app.use('/api/movies', moviesRoute)
 app.use('/api/user', userRoutes)
+app.use('/api/movies', moviesRoute)
 
 const PORT = process.env.PORT || 3001
 
