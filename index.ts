@@ -1,15 +1,34 @@
-import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
+import express, { Express, Request, Response } from 'express'
+import dotenv from 'dotenv'
+dotenv.config()
+import bodyParser from 'body-parser'
+import morgan from 'morgan'
 
-dotenv.config();
+import mongoose from 'mongoose'
 
-const app: Express = express();
-const port = process.env.PORT || 3001;
+import moviesRoute from './routes/movies'
+
+const app: Express = express()
+
+app.use(morgan('common'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
-});
+	res.send('Server is running')
+})
 
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
-});
+app.use('/api/movies', moviesRoute)
+
+const PORT = process.env.PORT || 3001
+
+mongoose
+	.connect(process.env.MONGO_URI!)
+	.then(() => {
+		app.listen(PORT, () => {
+			console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`)
+		})
+	})
+	.catch((error) => {
+		console.log(error)
+	})
