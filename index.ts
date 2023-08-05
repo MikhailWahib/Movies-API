@@ -6,7 +6,8 @@ import morgan from 'morgan'
 
 import mongoose from 'mongoose'
 
-import moviesRoute from './routes/movies'
+import moviesRoute from './routes/moviesRoutes'
+import userRoutes from './routes/userRoutes'
 
 const app: Express = express()
 
@@ -19,6 +20,7 @@ app.get('/', (req: Request, res: Response) => {
 })
 
 app.use('/api/movies', moviesRoute)
+app.use('/api/user', userRoutes)
 
 const PORT = process.env.PORT || 3001
 

@@ -1,59 +1,36 @@
-import mongoose, { Schema } from 'mongoose'
+import mongoose, { Schema, Document, model } from 'mongoose'
 
-const MovieSchema = new Schema({
-	title: {
-		type: String,
-		required: true,
-	},
-	year: {
-		type: String,
-		required: true,
-	},
-	rate: {
-		type: String,
-		required: true,
-	},
-	duration: {
-		type: String,
-		required: true,
-	},
-	desc: {
-		type: String,
-		required: true,
-	},
-	genre: {
-		type: [String],
-		required: true,
-	},
-	actors: {
-		type: [String],
-		required: true,
-	},
-	director: {
-		type: String,
-		required: true,
-	},
-	writers: {
-		type: [String],
-		required: true,
-	},
-	rateOutOf10: {
-		type: String,
-		required: true,
-	},
-	thumbnail: {
-		type: String,
-		required: true,
-	},
-	poster: {
-		type: String,
-		required: true,
-	},
-	trailer: {
-		type: String,
-		required: true,
-	},
+interface Movie extends Document {
+	title: string
+	year: string
+	rate: string
+	duration: string
+	desc: string
+	genre: string[]
+	actors: string[]
+	director: string
+	writers: string[]
+	rateOutOf10: string
+	thumbnail: string
+	poster: string
+	trailer: string
+}
+
+const MovieSchema: Schema = new Schema({
+	title: String,
+	year: String,
+	rate: String,
+	duration: String,
+	desc: String,
+	genre: [String],
+	actors: [String],
+	director: String,
+	writers: [String],
+	rateOutOf10: String,
+	thumbnail: String,
+	poster: String,
+	trailer: String,
 })
 
-const Movie = mongoose.model('Movie', MovieSchema)
+const Movie = model<Movie>('Movie', MovieSchema)
 export default Movie
