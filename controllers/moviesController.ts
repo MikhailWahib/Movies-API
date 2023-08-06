@@ -28,3 +28,16 @@ export const searchMoviesByName = async (req: Request, res: Response) => {
 		console.log(error)
 	}
 }
+
+export const getRandomMovie = async (req: Request, res: Response) => {
+	try {
+		const movie = await Movie.aggregate([
+			{
+				$sample: { size: 1 },
+			},
+		])
+		res.status(200).json(movie[0])
+	} catch (error) {
+		console.log(error)
+	}
+}
