@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express'
 import dotenv from 'dotenv'
 dotenv.config()
+import cors from 'cors'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
 
@@ -11,6 +12,7 @@ import userRoutes from './routes/userRoutes'
 
 const app: Express = express()
 
+app.use(cors())
 app.use(morgan('common'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
