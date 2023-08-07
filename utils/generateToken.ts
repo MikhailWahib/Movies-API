@@ -1,4 +1,4 @@
-import { Response, Request } from 'express'
+import { Response } from 'express'
 import jwt from 'jsonwebtoken'
 
 export const generateToken = (res: Response, userId: string) => {
