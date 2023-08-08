@@ -22,7 +22,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
 		const errors = validationResult(req)
 		if (!errors.isEmpty()) {
-			return res.status(400).json({ errors: errors.array() })
+			return res.status(400).json({ message: 'Invalid email or password' })
 		}
 
 		const { firstName, lastName, email, password } = req.body
@@ -46,7 +46,13 @@ export const registerUser = async (req: Request, res: Response) => {
 		// Save the user to the database
 		const savedUser = await newUser.save()
 
-		return res.status(201).json(savedUser)
+		return res.status(201).json({
+			id: savedUser._id,
+			firstName: savedUser.firstName,
+			lastName: savedUser.lastName,
+			email: savedUser.email,
+			favorites: savedUser.favorites,
+		})
 	} catch (error) {
 		console.log(error)
 		return res.status(500).json({ message: 'Server error' })
@@ -63,7 +69,7 @@ export const authUser = async (req: Request, res: Response) => {
 
 		const errors = validationResult(req)
 		if (!errors.isEmpty()) {
-			return res.status(400).json({ errors: errors.array() })
+			return res.status(400).json({ message: 'Invalid email or password' })
 		}
 
 		const { email, password } = req.body
@@ -74,7 +80,7 @@ export const authUser = async (req: Request, res: Response) => {
 		}
 		const isMatch = await bcrypt.compare(password, user.password)
 		if (!isMatch) {
-			return res.status(401).json({ message: 'Invalid email or password' })
+			return res.status(401).json({ message: 'Invalid password' })
 		}
 		generateToken(res, user.id)
 		return res.status(200).json({
