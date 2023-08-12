@@ -6,6 +6,6 @@ const router = Router()
 
 router.post('/', registerUser)
 router.post('/auth', authUser)
-router.post('/logout', logout)
+router.get('/logout', logout)
 
 export default router
