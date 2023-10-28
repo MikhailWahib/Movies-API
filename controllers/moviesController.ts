@@ -1,9 +1,19 @@
-import { Request, Response } from 'express'
-import Movie from '../models/Movie'
+import { Request, Response } from "express"
+import Movie from "../models/Movie"
+import User from "../models/User"
 
 export const getAllMovies = async (req: Request, res: Response) => {
 	try {
-		const movies = await Movie.find()
+		let page = parseInt(req.query.page as string) || 1
+		let skip = (page - 1) * 20
+		let limit = 20
+
+		const movies = await Movie.find().skip(skip).limit(limit)
+
+		if (movies.length === 0) {
+			return res.status(404).json({ message: "Movies not found" })
+		}
+
 		res.status(200).json(movies)
 	} catch (error) {
 		console.log(error)
@@ -13,15 +23,15 @@ export const getAllMovies = async (req: Request, res: Response) => {
 export const searchMoviesByName = async (req: Request, res: Response) => {
 	try {
 		const { name } = req.params
-		if (!name || typeof name !== 'string')
-			return res.status(400).json({ message: 'Invalid name' })
+		if (!name || typeof name !== "string")
+			return res.status(400).json({ message: "Invalid name" })
 
 		const movies = await Movie.find({
-			title: { $regex: new RegExp(name, 'i') },
+			title: { $regex: new RegExp(name, "i") },
 		})
 
 		if (movies.length === 0) {
-			return res.status(404).json({ message: 'Movie not found' })
+			return res.status(404).json({ message: "Movie not found" })
 		}
 		res.status(200).json(movies)
 	} catch (error) {

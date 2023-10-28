@@ -1,30 +1,31 @@
-import express, { Express, Request, Response } from 'express'
-import dotenv from 'dotenv'
+import express, { Express, Request, Response } from "express"
+import dotenv from "dotenv"
 dotenv.config()
-import cors from 'cors'
-import bodyParser from 'body-parser'
-import cookieParser from 'cookie-parser'
-import morgan from 'morgan'
+import cors from "cors"
+import bodyParser from "body-parser"
+import cookieParser from "cookie-parser"
+import morgan from "morgan"
 
-import mongoose from 'mongoose'
+import mongoose from "mongoose"
 
-import moviesRoute from './routes/moviesRoutes'
-import userRoutes from './routes/userRoutes'
+import moviesRoute from "./routes/moviesRoutes"
+import userRoutes from "./routes/userRoutes"
+import { protect } from "./middleware/protect"
 
 const app: Express = express()
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }))
+app.use(cors({ origin: "http://localhost:3000", credentials: true }))
 app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(morgan('common'))
+app.use(morgan("common"))
 
-app.get('/', (req: Request, res: Response) => {
-	res.send('Server is running')
+app.get("/", (req: Request, res: Response) => {
+	res.send("Server is running")
 })
 
-app.use('/api/user', userRoutes)
-app.use('/api/movies', moviesRoute)
+app.use("/api/user", userRoutes)
+app.use("/api/movies", protect, moviesRoute)
 
 const PORT = process.env.PORT || 9000
 

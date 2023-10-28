@@ -1,4 +1,4 @@
-import { Schema, model, Document, Types } from 'mongoose'
+import { Schema, model, Document, Types } from "mongoose"
 
 interface User extends Document {
 	firstName: string
@@ -25,8 +25,7 @@ const UserSchema = new Schema({
 		type: String,
 		required: true,
 	},
-	favorites: [{ type: Types.ObjectId, ref: 'Movie' }],
 })
 
-const User = model<User>('User', UserSchema)
+const User = model<User>("User", UserSchema)
 export default User

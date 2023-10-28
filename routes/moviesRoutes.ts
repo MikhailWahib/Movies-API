@@ -1,14 +1,14 @@
-import { Router } from 'express'
+import { Router } from "express"
 import {
 	getAllMovies,
 	searchMoviesByName,
 	getRandomMovie,
-} from '../controllers/moviesController'
+} from "../controllers/moviesController"
 
 const router = Router()
 
-router.get('/', getAllMovies)
-router.get('/search/:name', searchMoviesByName)
-router.get('/random', getRandomMovie)
+router.get("/", getAllMovies)
+router.get("/search/:name", searchMoviesByName)
+router.get("/random", getRandomMovie)
 
 export default router

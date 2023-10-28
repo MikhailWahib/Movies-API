@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, model } from 'mongoose'
+import mongoose, { Schema, Document, model } from "mongoose"
 
 interface Movie extends Document {
 	title: string
@@ -32,5 +32,5 @@ const MovieSchema: Schema = new Schema({
 	trailer: String,
 })
 
-const Movie = model<Movie>('Movie', MovieSchema)
+const Movie = model<Movie>("Movie", MovieSchema)
 export default Movie
