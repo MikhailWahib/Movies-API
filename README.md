@@ -5,7 +5,7 @@
 <!-- git clone -->
 
 ```bash
-git clone https://github.com/movies-api/movies-api.git
+git clone https://github.com/MikhailWahib/MoviesAPI/
 ```
 
 ```bash
@@ -25,7 +25,7 @@ npm run start
 
 - **Register User**
 
-  - **URL:** `/api/users/`
+  - **URL:** `/users`
   - **Method:** `POST`
   - **Description:** Register a new user.
   - **Request Body:**
@@ -51,7 +51,7 @@ npm run start
 
 - **Authenticate User**
 
-  - **URL:** `/api/users/auth`
+  - **URL:** `/users/auth`
   - **Method:** `POST`
   - **Description:** Authenticate a user.
   - **Request Body:**
@@ -67,7 +67,7 @@ npm run start
 
 - **Logout User**
 
-  - **URL:** `/api/users/logout`
+  - **URL:** `/users/logout`
   - **Method:** `POST`
   - **Description:** Logout the currently authenticated user.
   - **Success Response:**
@@ -85,7 +85,7 @@ npm run start
 
 - **Get All Movies**
 
-  - **URL:** `/api/movies/`
+  - **URL:** `/movies`
   - **Method:** `GET`
   - **Description:** Retrieve a list of all movies.
   - **Success Response:**
@@ -108,7 +108,7 @@ npm run start
 
 - **Search Movies by Name**
 
-  - **URL:** `/api/movies/search/:name`
+  - **URL:** `/movies/search/:name`
   - **Method:** `GET`
   - **Description:** Search for movies by name.
   - **URL Parameters:**
@@ -138,7 +138,7 @@ npm run start
       ```
 
 - **Get Random Movie**
-  - **URL:** `/api/movies/random`
+  - **URL:** `/movies/random`
   - **Method:** `GET`
   - **Description:** Retrieve a random movie from the database.
   - **Success Response:**
