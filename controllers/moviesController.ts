@@ -1,6 +1,5 @@
 import { Request, Response } from "express"
 import Movie from "../models/Movie"
-import User from "../models/User"
 
 export const getAllMovies = async (req: Request, res: Response) => {
 	try {
