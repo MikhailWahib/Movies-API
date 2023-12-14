@@ -21,67 +21,7 @@ npm run build
 npm run start
 ```
 
-### Users
-
-- **Register User**
-
-  - **URL:** `/users`
-  - **Method:** `POST`
-  - **Description:** Register a new user.
-  - **Request Body:**
-    ```json
-    {
-    	"email": "user@mail.com",
-    	"firstName": "name",
-    	"lastName": "name",
-    	"password": "password123"
-    }
-    ```
-  - **Success Response:**
-    - **Status Code:** 201 (Created)
-    - **Response Body:**
-      ```json
-      {
-      	"id": "13513153",
-      	"firstName": "name",
-      	"lastName": "name",
-      	"email": "name@name.com"
-      }
-      ```
-
-- **Authenticate User**
-
-  - **URL:** `/users/auth`
-  - **Method:** `POST`
-  - **Description:** Authenticate a user.
-  - **Request Body:**
-    ```json
-    {
-    	"email": "user123",
-    	"password": "password123"
-    }
-    ```
-  - **Success Response:**
-    - **Status Code:** 200 (OK)
-    - **Response Body:** No Response - jwt token stored in http-only cookie
-
-- **Logout User**
-
-  - **URL:** `/users/logout`
-  - **Method:** `POST`
-  - **Description:** Logout the currently authenticated user.
-  - **Success Response:**
-
-    - **Status Code:** 200 (OK)
-    - **Response Body:**
-
-      ```json
-      {
-      	"message": "User logged out successfully."
-      }
-      ```
-
-      ### Movies
+### Movies
 
 - **Get All Movies**
 
@@ -180,14 +120,3 @@ npm run start
 - **Mongoose**
 
   - Mongoose is an Object Data Modeling (ODM) library for MongoDB and is used to define data models and interact with the MongoDB database.
-
-- **express-validator**
-
-  - express-validator is used for request validation and sanitization, ensuring that incoming data is valid and secure.
-
-- **jsonwebtoken**
-
-  - jsonwebtoken is used for user authentication and generating access tokens for authenticated users.
-
-- **bcrypt**
-  - bcrypt is used for securely hashing and storing user passwords in the database, enhancing user security.
