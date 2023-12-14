@@ -23,6 +23,8 @@ npm run start
 
 ### Movies
 
+#### Base URL: https://movies-api-2kyn.onrender.com/api/v1/
+
 - **Get All Movies**
 
   - **URL:** `/movies`
